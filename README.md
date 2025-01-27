@@ -35,7 +35,7 @@ TriggerClientEvent("sc_textUI:showUI", playerId, "E", "Press to interact")
 TriggerClientEvent("sc_textUI:hideUI", playerId)
 ```
 
-#### Example script
+#### Example script (client.lua)
 ```lua
 Citizen.CreateThread(function()
     while true do
