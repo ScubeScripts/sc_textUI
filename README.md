@@ -3,7 +3,7 @@ A simple UI for FiveM that works with all frameworks.
 
 ![Screenshot 2025-01-27 164230](https://github.com/user-attachments/assets/b6290534-9144-40bc-a8ba-c8d3e596c699)
 
-## Usage
+## Usage client.lua
 
 #### Show UI with text and key
 ```lua
@@ -17,6 +17,22 @@ exports.sc_textUI:showUI("E", "Press to interact")
 #### Hide UI
 ```lua
 exports.sc_textUI:hideUI()
+```
+
+## Usage server.lua
+
+#### Show UI with text and key
+```lua
+TriggerClientEvent("sc_textUI:showUI", playerId, key, message)
+
+-- example
+
+TriggerClientEvent("sc_textUI:showUI", playerId, "E", "Press to interact")
+```
+
+#### Hide UI
+```lua
+TriggerClientEvent("sc_textUI:hideUI", playerId)
 ```
 
 #### Example script
