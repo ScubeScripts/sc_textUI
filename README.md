@@ -59,7 +59,7 @@ Add sc_hud to your resources directory
 
 Add this in your server.cfg :
 ```
-ensure sc_hud
+ensure sc_textUI
 ```
 
 » You want more? Come to my [Discord Server](https://discord.gg/Mqgewse3Yc)
