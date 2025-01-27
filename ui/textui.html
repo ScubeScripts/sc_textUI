@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextUI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: transparent;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            display: none;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .key {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent weißer Hintergrund für den Kreis */
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 22px;
+            color: white;
+        }
+
+        .text {
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="key"></div><span class="text"></span>
+    </div>
+    <script>
+        window.addEventListener("load", function() {
+            const container = document.getElementById("container");
+            container.style.display = "none";
+        });
+
+        window.addEventListener("message", function(event) {
+            const container = document.getElementById("container");
+            const key = document.querySelector(".key");
+            const text = document.querySelector(".text");
+        
+            if (event.data.type === "ui") {
+                if (event.data.display) {
+                    key.textContent = event.data.key;
+                    text.textContent = event.data.text;
+                    container.style.display = "flex";
+                } else {
+                    container.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
