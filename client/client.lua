@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 local display = false
 
 -- Funktion zum Anzeigen der TextUI
