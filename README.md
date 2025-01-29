@@ -70,7 +70,7 @@ end)
 ## Installation
 Clone or download this repository
 
-Add sc_hud to your resources directory
+Add sc_textUI to your resources directory
 
 Add this in your server.cfg :
 ```
