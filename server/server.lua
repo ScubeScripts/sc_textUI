@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 -- Funktion, um die UI für einen spezifischen Spieler zu zeigen
 function ShowTextUIForPlayer(source, key, text)
     TriggerClientEvent("sc_textUI:showUI", source, key, text)
