@@ -3,6 +3,108 @@ A simple UI for FiveM that works with all frameworks.
 
 ![Screenshot 2025-01-27 164230](https://github.com/user-attachments/assets/b6290534-9144-40bc-a8ba-c8d3e596c699)
 
+> [!TIP]
+> If you want to replace our textUI with the normal one from ESX, replace the code here: esx_textui/TextUI.lua
+
+<details>
+<summary>Code to replace:</summary>
+<br>
+
+## Old Code:
+
+```lua
+Debug = ESX.GetConfig().EnableDebug
+local isShowing = false
+---@param message string
+---@param typ string
+local function TextUI(message, typ)
+    isShowing = true
+    SendNUIMessage({
+        action = "show",
+        message = message and message or "ESX-TextUI",
+        type = type(typ) == "string" and typ or "info",
+    })
+end
+
+local function HideUI()
+    if not isShowing then
+        return
+    end
+    isShowing = false
+    SendNUIMessage({
+        action = "hide",
+    })
+end
+
+exports("TextUI", TextUI)
+exports("HideUI", HideUI)
+ESX.SecureNetEvent("ESX:TextUI", TextUI)
+ESX.SecureNetEvent("ESX:HideUI", HideUI)
+
+if Debug then
+    RegisterCommand("textui:error", function()
+        ESX.TextUI("i ~r~love~s~ donuts", "error")
+    end, false)
+
+    RegisterCommand("textui:success", function()
+        ESX.TextUI("i ~g~love~s~ donuts", "success")
+    end, false)
+
+    RegisterCommand("textui:info", function()
+        ESX.TextUI("i ~b~love~s~ donuts", "info")
+    end, false)
+
+    RegisterCommand("textui:hide", function()
+        ESX.HideUI()
+    end, false)
+end
+```
+
+## New Code:
+
+```lua
+Debug = ESX.GetConfig().EnableDebug
+local isShowing = false
+
+---@param message string
+local function TextUI(message)
+    isShowing = true
+    local key, text = message:match("%[(%w)%]%s*(.*)")
+
+    if not key then
+        key = "default"
+        text = message
+    end
+
+    exports.sc_textUI:showUI(key, text)
+end
+
+local function HideUI()
+    if not isShowing then
+        return
+    end
+    isShowing = false
+    exports.sc_textUI:hideUI()
+end
+
+exports("TextUI", TextUI)
+exports("HideUI", HideUI)
+ESX.SecureNetEvent("ESX:TextUI", TextUI)
+ESX.SecureNetEvent("ESX:HideUI", HideUI)
+
+if Debug then
+    RegisterCommand("textui:test", function()
+        TextUI("Press [E] to use")
+    end, false)
+
+    RegisterCommand("textui:hide", function()
+        HideUI()
+    end, false)
+end
+```
+
+</details>
+
 ## Usage client.lua
 
 #### Show UI with text and key
