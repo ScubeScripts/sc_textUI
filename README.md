@@ -11,6 +11,7 @@ A simple UI for FiveM that works with all frameworks.
 <br>
 
 ## Old Code:
+### esx_textui/TextUI.lua
 
 ```lua
 Debug = ESX.GetConfig().EnableDebug
@@ -61,6 +62,7 @@ end
 ```
 
 ## New Code:
+### esx_textui/TextUI.lua
 
 ```lua
 Debug = ESX.GetConfig().EnableDebug
